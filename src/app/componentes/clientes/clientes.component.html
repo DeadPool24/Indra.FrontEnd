@@ -1,0 +1,58 @@
+<h1>Listado de Clientes</h1>
+<hr>
+
+<div class="row">
+    <div class="col text-right">
+        <button class="btn btn-primary" routerLink="/cliente/nuevo">
+            <i class="fa fa-plus">
+            </i>
+            Agregar
+        </button>
+    </div>
+</div>
+<table *ngIf="!cargando && clientes.length > 0" class="table mt-3 animated fadeIn fast">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Tools</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let item of clientes; let i = index">
+        <tr>
+            <th scope="row">{{i + 1}}</th>
+            <td>{{item.nombre}}</td>
+            <td>{{item.dni}}</td>
+            <td>
+                <label *ngIf="item.estado" class="badge badge-success">Activo</label>
+                <label *ngIf="!item.estado" class="badge badge-danger">Inactivo</label>
+            </td>
+            <td>
+                <button class="btn btn-info mr-1" [routerLink]="['/cliente',item.id]"><i class="fa fa-pen"></i></button>
+                <button class="btn btn-danger mr-1" (click)="borrarCliente(item, i)"><i class="fa fa-trash"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="!cargando && clientes.length === 0" class="alert alert-danger text-center mt-3">
+    <h4 class="alter-danger">No hay registros</h4>
+    <p>
+        <i class="fa fa-exclamation   fa-2x "></i>
+    </p>
+    <p class="mb-0">
+        espere por favor
+    </p>
+</div>
+
+<div *ngIf="cargando" class="alert alert-info text-center mt-3 animated fadeIn faster">
+    <h4 class="alter-heading">Cargando</h4>
+    <p>
+        <i class="fa fa-sync-alt  fa-spin  fa-2x "></i>
+    </p>
+    <p class="mb-0">
+        espere por favor
+    </p>
+</div>

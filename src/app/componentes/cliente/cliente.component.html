@@ -1,0 +1,62 @@
+<h1>Cliente <small>Nombre del Cliente</small></h1>
+<hr>
+<div class="row text-right">
+    <div class="col">
+        <button class="btn btn-danger" routerLink="/clientes">
+            <i class="fa fa-arrow-left"></i>
+            Regresar
+        </button>
+    </div>
+</div>
+
+<div class="row animated fadeIn faster">
+    <div class="col">
+
+        <form (ngSubmit)="guardar(f)" #f="ngForm">
+
+
+            <div class="form-group">
+                <label>ID</label>
+                <input type="text" class="form-control" [(ngModel)]="cliente.id" name="id" disabled="disabled" placeholder="ID autogenerado">
+                <small>Este campo es autogenerado</small>
+            </div>
+
+            <div class="form-group">
+                <label>Nombre cliente</label>
+                <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" placeholder="Nombre Cliente" required>
+            </div>
+
+            <div class="form-group">
+                <label>DNI</label>
+                <input type="text" maxlength="8" class="form-control" [(ngModel)]="cliente.dni" name="dni" placeholder="DNI">
+            </div>
+
+            <div class="form-group">
+                <label>Estado</label>
+                <br>
+                <button *ngIf="cliente.estado" (click)="cliente.estado = false" class="btn btn-outline-success w-50" type="button">
+                    <i class="fa fa-smile-wink"></i>
+                    Activo
+                </button>
+
+                <button *ngIf="!cliente.estado" (click)="cliente.estado = true" class="btn btn-outline-danger w-50" type="button">
+                    <i class="fa fa-dizzy"></i>
+                    Inactivo
+                </button>
+            </div>
+
+            <hr>
+
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary w-25">
+                    <i class="fa fa-save"></i>
+                    Guardar
+                </button>
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
